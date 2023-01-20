@@ -1,0 +1,49 @@
+<!-- extending the template to a home page, can override any blocks from base.html-->
+{% extends "base.html" %}{% block title %}Home{% endblock %} {% block content %}
+<h1 style="color: azure" align="center">Chess Game Classifier</h1>
+<h2 style="color: azure" align="center">
+  Please upload your chess board position!
+</h2>
+<ul class="list-group list-group-flush" id="file">
+  {% for file in user.files %}
+  <li class="list-group-item">
+    <button type="button" class="close" onClick="deleteFile({{ file.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div>
+      <img src="{{ file.data }}" style="width: 500px; height: auto" />
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+<ul class="list-group list-group-flush" id="board">
+  {% for image in user.board %}
+  <li class="list-group-item">
+    <button type="button" class="close" onClick="deleteImage({{ image.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div style="width: 500px; height: auto">{{image.data | safe }}</div>
+    <div class="progress">
+      <div
+        class="progress-bar progress-bar-striped progress-bar-animated"
+        role="progressbar"
+        aria-valuenow="75"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="width: 75%"
+      ></div>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST" enctype="multipart/form-data">
+  {{form.hidden_tag()}} {{form.file()}} {{form.submit()}}
+  <label
+    style="background-color: darkslategrey"
+    class="btn btn-dark"
+    for="customFile"
+    >Default file input example</label
+  >
+  <br />
+</form>
+{% endblock %}

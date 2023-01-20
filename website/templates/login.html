@@ -1,0 +1,40 @@
+<!-- extending the template to a home page, can override any blocks from base.html-->
+{% extends "base.html" %}{% block title %}Login{% endblock %} {% block content
+%}
+<form method="POST">
+  <h3 align="center">Login</h3>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Enter email"
+      />
+    </div>
+  </div>
+  <br />
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Enter password"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck" />
+      <label class="form-check-label" for="gridCheck"> Remember me </label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+{% endblock %}
